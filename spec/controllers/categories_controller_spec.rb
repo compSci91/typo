@@ -9,6 +9,7 @@ describe CategoriesController, "/index" do
     }
   end
 
+
   describe "normally" do
     before do
       controller.stub(:template_exists?).and_return false
@@ -38,6 +39,29 @@ describe CategoriesController, "/index" do
   end
 end
 
+  describe "Create Category" do
+    before(:each) do 
+      get :new, :id =>Factory(:category).id
+    end
+    
+    it 'should render the template for new' do
+      assert_template 'new'
+      assert_tag :tag => "table", :attributes => { :id => "category_container"}
+    end
+    
+    it 'should create a new category' do
+      post :edit, :category => {:name => "Political", 
+      :keywords => "Trump Mueller Russia", 
+      :permalink => "https//:www.permalink.com", 
+      :description => "This is my description"}
+
+      assert_response :redirect, :action => "index" 
+      expect(assigns(:category)).not_to be_nil
+      assigns(:categories).should_not be_nil
+      expect(flash[:notice]).to eq("Created Category: Political")
+    end
+  end
+  
 describe CategoriesController, '#show' do
   before do
     blog = Factory(:blog, :base_url => "http://myblog.net", :theme => "typographic",
