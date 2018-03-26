@@ -11,12 +11,12 @@ Feature: Create Category
     Given I am on the create categories page
     When I fill in "category_name" with "Political"
     And I fill in "category_keywords" with "Trump Mueller Russia"
-    And I fill in "category_permalink" with "https//:www.permalink.com"
+    And I fill in "category_permalink" with "permalink here"
     And I fill in "category_description" with "This is my description"
     And I press "Save"
-    Then I should be on the admin content page
+    Then I should be on the admin categories page
     Then I should see "Political"
     Then I should see "Trump Mueller Russia"
-    Then I should see "https://www.permalink.com"
+    Then I should see "permalink here"
     Then I should see "This is my description"
     
