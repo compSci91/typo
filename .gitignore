@@ -1,4 +1,6 @@
 config/mail.yml
+db/db_development
+db/db_test
 *.log
 *~
 db/*.sqlite*
