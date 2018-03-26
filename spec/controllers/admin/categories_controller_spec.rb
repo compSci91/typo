@@ -15,6 +15,16 @@ describe Admin::CategoriesController do
     get :index
     assert_response :redirect, :action => 'index'
   end
+  
+  describe "create new category" do #The exact same as test_edit, minus the id. 
+    it 'should render template new' do
+       get :edit
+      assert_template 'new'
+      assert_tag :tag => "table",
+        :attributes => { :id => "category_container" }
+    end
+  end
+
 
   describe "test_edit" do
     before(:each) do

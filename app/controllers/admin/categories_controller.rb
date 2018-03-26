@@ -21,11 +21,13 @@ class Admin::CategoriesController < Admin::BaseController
     redirect_to :action => 'new'
   end
 
-  private
+  
+private
 
   def new_or_edit
     @categories = Category.find(:all)
-    @category = Category.find(params[:id])
+    @category = params[:id] ? Category.find(params[:id]) : Category.new
+
     @category.attributes = params[:category]
     if request.post?
       respond_to do |format|
@@ -41,6 +43,8 @@ class Admin::CategoriesController < Admin::BaseController
     end
     render 'new'
   end
+
+ 
 
   def save_category
     if @category.save!
