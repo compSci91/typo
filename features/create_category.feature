@@ -20,3 +20,15 @@ Feature: Create Category
     Then I should see "permalink here"
     Then I should see "This is my description"
     
+    Then I follow "Political"
+     And I fill in "category_keywords" with "Jessica Jones" 
+    And I fill in "category_permalink" with "another permalink here"
+    And I fill in "category_description" with "The second season wasn't that good."
+    And I press "Save"
+    Then I should be on the admin categories page
+    Then I should see "Political"
+    Then I should see "Jessica Jones" 
+    Then I should see "another permalink here"
+    Then I should see "The second season wasn't that good."
+    
+    
