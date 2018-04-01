@@ -23,6 +23,14 @@ describe Admin::CategoriesController do
       assert_tag :tag => "table",
         :attributes => { :id => "category_container" }
     end
+    
+     it 'should create a new category' do
+       get :edit
+       post :edit, :category => {:name => "Homeland", :keywords => "Spy Genre", :permalink => "Homeland", :description => "Is Carrie on her meds? or is she right? "}
+       assert_response :redirect, :action => "index"
+       expect(assigns(:category)).not_to be_nil
+       expect(flash[:notice]).to eq('Category was successfully saved.')
+    end
   end
 
 
