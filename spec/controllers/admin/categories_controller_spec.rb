@@ -26,9 +26,15 @@ describe Admin::CategoriesController do
     
      it 'should create a new category' do
        get :edit
-       post :edit, :category => {:name => "Homeland", :keywords => "Spy Genre", :permalink => "Homeland", :description => "Is Carrie on her meds? or is she right? "}
+       post :edit, :category => {:name => "Homeland", :keywords => "Spy Genre", :permalink => "Saul Berenson", :description => "Is Carrie on her meds? or is she right? "}
        assert_response :redirect, :action => "index"
-       expect(assigns(:category)).not_to be_nil
+       expect(assigns(:category)[:name]).to eq("Homeland")
+       expect(assigns(:category)[:keywords]).to eq("Spy Genre")
+       expect(assigns(:category)[:permalink]).to eq("Saul Berenson")
+      expect(assigns(:category)[:description]).to eq("Is Carrie on her meds? or is she right? ")
+
+
+
        expect(flash[:notice]).to eq('Category was successfully saved.')
     end
   end
